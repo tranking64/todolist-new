@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Router } from '@angular/router';
+import { FireserviceService } from 'src/app/services/fireservice.service';
 
 @Component({
   selector: 'app-login',
@@ -9,18 +8,21 @@ import { Router } from '@angular/router';
 })
 export class LoginPage implements OnInit {
 
-  public email = '';
-  public password = '';
+  public email: string;
+  public password: string;
 
-  constructor(public auth: AngularFireAuth, public router: Router) { }
+  constructor(public service: FireserviceService) {}
 
   login() {
-    this.auth.signInWithEmailAndPassword(this.email, this.password)
-      .then(() => {
-        this.router.navigate(['/tabs/tab2']);
-      }).catch(error => {
-        console.log('An error occured');
-      });
+    this.service.currUser.email = this.email;
+    this.service.currUser.password = this.password;
+
+    this.service.login();
+  }
+
+  ionViewDidLeave() {
+    this.email = '';
+    this.password = '';
   }
 
   ngOnInit() {

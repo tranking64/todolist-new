@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Add Task</ion-title>
+    <ion-title>Create new task</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="closeModal()">
         <ion-icon name="close"></ion-icon>
@@ -11,44 +11,26 @@
 
 <ion-content>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-input placeholder="Title" [(ngModel)]="title"></ion-input>
-      </ion-col>
-    </ion-row>
+  <div id="container">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-input placeholder="Title" [(ngModel)]="title"></ion-input>
+        </ion-col>
+      </ion-row>
 
-    <ion-row>
-      <ion-col>
-        <ion-textarea placeholder="Enter more information here..."></ion-textarea>
-      </ion-col>
-    </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-textarea placeholder="Enter more information here..." [(ngModel)]="description"></ion-textarea>
+        </ion-col>
+      </ion-row>
 
-    <!--
-    <ion-row>
-      <ion-col>
-        <ion-item button="true" id="open-date-input">
-          <ion-label>Date</ion-label>
-          <ion-text slot="end">{{ dateValue }}</ion-text>
-          <ion-popover trigger="open-date-input" show-backdrop="false">
-            <ng-template>
-              <ion-datetime
-                #popoverDatetime
-                presentation="date"
-                (ionChange)="dateValue = formatDate(popoverDatetime.value)"
-              ></ion-datetime>
-            </ng-template>
-          </ion-popover>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-    -->
-
-    <ion-row>
-      <ion-col>
-        <ion-button (click)="addTask()">Add</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-button (click)="addTask()">Add</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 
 </ion-content>

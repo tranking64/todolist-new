@@ -4,7 +4,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  top: 50%;
+  top: 40%;
   transform: translateY(-50%);
 }
 
@@ -18,17 +18,4 @@ ion-input {
   border-radius: 10px;
   border: solid 1px;
   --padding-start: 10px;
-}
-
-.ion-float-left {
-  margin-top: 5px;
-  margin-left: 2px;
-}
-
-ion-icon {
-  font-size: 75px;
-}
-
-a {
-  text-decoration: none;
 }

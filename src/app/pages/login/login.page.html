@@ -4,17 +4,25 @@
     <ion-grid>
       <ion-row>
         <ion-col>
+          <ion-icon color="primary" name="checkmark-done-circle"></ion-icon>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
           <ion-input placeholder="Email" [(ngModel)]="email"></ion-input>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col>
           <ion-input placeholder="Password" type="password" [(ngModel)]="password"></ion-input>
+          <a class="ion-float-left" routerLink="/forgotpw">Forgot Password</a>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col>
           <ion-button (click)="login()">Login</ion-button>
+          <span>or</span>
+          <ion-button [routerLink]="['/signup']">Sign up</ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>
