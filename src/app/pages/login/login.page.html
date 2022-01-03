@@ -1,0 +1,23 @@
+<ion-content>
+
+  <div id="container">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-input placeholder="Email" [(ngModel)]="email"></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-input placeholder="Password" type="password" [(ngModel)]="password"></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button (click)="login()">Login</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+</ion-content>

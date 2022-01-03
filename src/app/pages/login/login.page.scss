@@ -1,0 +1,21 @@
+#container {
+  text-align: center;
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+ion-button {
+  width: 100%;
+  --border-radius: 3px;
+}
+
+ion-input {
+  text-align: start;
+  border-radius: 3px;
+  border: solid 1px;
+  --padding-start: 10px;
+}
