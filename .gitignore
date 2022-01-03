@@ -81,5 +81,7 @@ lint/outputs/
 lint/tmp/
 # lint/reports/
 
-# misc
+# others
 /.angular/cache
+node_modules
+.vscode
