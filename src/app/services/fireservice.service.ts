@@ -41,11 +41,20 @@ export class FireserviceService {
 
   async presentAlert() {
     const alert = await this.alertCtrl.create({
-      header: 'Unvalid inputs!',
+      header: 'Unvalid email!',
       message: 'Please check your entered data again!',
       buttons: ['OK']
     });
     await alert.present();
+  }
+
+  async presentPWToast() {
+    const toast = await this.toastCtrl.create({
+      color: 'warning',
+      message: 'A password reset-link was sent. Please check your email!',
+      duration: 3000
+    });
+    toast.present();
   }
 
   async presentToast() {
@@ -107,6 +116,11 @@ export class FireserviceService {
   }
 
   resetPassword(email: string) {
-    this.auth.sendPasswordResetEmail(email).catch(e => this.presentAlert());
+    this.auth.sendPasswordResetEmail(email)
+      .then(() => {
+        this.router.navigate(['login']);
+          this.presentPWToast();
+      })
+      .catch(e => this.presentAlert());
   }
 }
