@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 import { FireserviceService } from 'src/app/services/fireservice.service';
 
 @Component({
@@ -12,12 +13,24 @@ export class SignupPage implements OnInit {
   public password: string;
   public rePassword: string;
 
-  constructor(private service: FireserviceService) { }
+  constructor(private service: FireserviceService, private alertCtrl: AlertController) { }
+
+  async presentAlert() {
+    const alert = await this.alertCtrl.create({
+      header: 'Unvalid password!',
+      message: 'Passwords do not match! Please try again!',
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
 
   signup() {
-    //TODO implement good pw check
-    if(this.password === this.rePassword) {
+    // check if entered passwords are the same
+    if (this.password === this.rePassword) {
       this.service.signup(this.email, this.rePassword);
+    }
+    else {
+      this.presentAlert();
     }
   }
 

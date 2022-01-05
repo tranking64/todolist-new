@@ -13,6 +13,7 @@ export class ForgotpwPage {
   constructor(private service: FireserviceService) { }
 
   forgotPassword() {
+    // call resetPassword-method from service
     this.service.resetPassword(this.email);
   }
 }

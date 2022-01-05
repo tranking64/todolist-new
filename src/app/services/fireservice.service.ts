@@ -23,9 +23,9 @@ interface Task {
 export class FireserviceService {
 
   public currUser: User = {
-    email: 'f.treber@htlkrems.at',
-    password: 'fabian2003',
-    uid: 'SF3NHIu2uFRVl6EoqmiZ7BVSuh73'
+    email: '',
+    password: '',
+    uid: ''
   };
 
   public currTask: Task = {
@@ -67,9 +67,12 @@ export class FireserviceService {
   }
 
   login() {
+    // use firebase sign in method
     this.auth.signInWithEmailAndPassword(this.currUser.email, this.currUser.password)
+      // if sign in was successful --> navigate into the app homescreen
       .then(async () => {
         this.router.navigate(['/tabs/tab2']);
+        // get current userid to be able to add tasks to this specific user
         this.currUser.uid = (await this.auth.currentUser).uid;
       })
       .catch(e => this.presentAlert());
@@ -82,34 +85,43 @@ export class FireserviceService {
         this.currUser.password = '';
         this.currUser.uid = '';
 
+        // navigate back to login screen
         this.router.navigate(['login']);
       });
   }
 
   createTask() {
+    // calls firebase method to create an entry in firestore databasee
     this.store.collection(this.currUser.uid).add(this.currTask);
   }
 
+  // get all tasks which were completed
   readDoneTasks() {
     return this.store.collection(this.currUser.uid, ref => ref.where('done', '==', true)).snapshotChanges();
   }
 
+  // get all tasks which are not completed
   readUndoneTasks() {
     return this.store.collection(this.currUser.uid, ref => ref.where('done', '==', false)).snapshotChanges();
   }
 
+  // method to update an todo-entry; specially used to mark a task as "done"
   updateTask(id, task: Task) {
     this.store.collection(this.currUser.uid).doc(id).update(task);
   }
 
+  // method to delete a specific task
   deleteTask(id) {
     this.store.doc(this.currUser.uid + '/' + id).delete();
   }
 
+  // method to create an account
   signup(email: string, password: string) {
     this.auth.createUserWithEmailAndPassword(email, password)
       .then(() => {
+        // navigate to login-page to enter credentials
         this.router.navigate(['login']);
+        // shows a message that account was created
         this.presentToast();
       })
       .catch(e => this.presentAlert());
@@ -119,7 +131,8 @@ export class FireserviceService {
     this.auth.sendPasswordResetEmail(email)
       .then(() => {
         this.router.navigate(['login']);
-          this.presentPWToast();
+        // shows a message that the user receives an email very soon
+        this.presentPWToast();
       })
       .catch(e => this.presentAlert());
   }

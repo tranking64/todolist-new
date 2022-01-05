@@ -20,8 +20,10 @@ export class Tab1Page {
 
   constructor(private service: FireserviceService) {}
 
+  // this method will be executed if the page was navigated to
   ionViewWillEnter() {
     this.service.readDoneTasks().subscribe((res) => {
+      // converts/maps firebase-entries to the class "Task"
       this.tasks = res.map((t) => ({
           id: t.payload.doc.id,
           ...t.payload.doc.data() as Task
@@ -29,6 +31,7 @@ export class Tab1Page {
     });
   }
 
+  // method to delete a completed task
   deleteTask(task: Task) {
     this.service.deleteTask(task.id);
   }

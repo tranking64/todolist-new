@@ -6,6 +6,7 @@
 
 <ion-content>
   <ion-list>
+    <!-- iterate through tasks and create items in a list -->
     <ion-item *ngFor="let task of tasks" (click)="completeTask(task)">
       <ion-checkbox color="primary" slot="start" [(ngModel)]="task.done"></ion-checkbox>
       <ion-label>
@@ -16,6 +17,7 @@
   </ion-list>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <!-- if button is clicked, a modal is shown where a task can be created -->
     <ion-fab-button (click)="showModal()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>

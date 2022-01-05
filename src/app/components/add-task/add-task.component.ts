@@ -16,6 +16,7 @@ export class AddTaskComponent implements OnInit {
   constructor(private modalCtrl: ModalController, private serivce: FireserviceService, private alertCtrl: AlertController) { }
 
   async presentAlert() {
+    // set params for Alert-Box
     const alert = await this.alertCtrl.create({
       header: 'Unvalid input!',
       message: 'Please give your new task at least a title!',
@@ -24,6 +25,7 @@ export class AddTaskComponent implements OnInit {
     await alert.present();
   }
 
+  // method to close modal
   async closeModal() {
     await this.modalCtrl.dismiss();
   }
@@ -34,7 +36,9 @@ export class AddTaskComponent implements OnInit {
       this.description = '';
     }
 
+    // at least the title must be given
     if(this.title != null) {
+      // get data from view and set title + description from service class
       this.serivce.currTask.title = this.title;
       this.serivce.currTask.description = this.description;
 

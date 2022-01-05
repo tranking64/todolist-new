@@ -10,6 +10,7 @@ export class Tab3Page {
 
   constructor(public service: FireserviceService) {}
 
+  // calling logout method from service class
   logout() {
     this.service.logout();
   }

@@ -38,6 +38,7 @@ export class Tab2Page implements OnInit {
     await modal.present();
   }
 
+  // this method will be executed if the page was navigated to
   ionViewWillEnter() {
     this.service.readUndoneTasks().subscribe((res) => {
       this.tasks = res.map((t) => ({
@@ -53,6 +54,7 @@ export class Tab2Page implements OnInit {
       description: task.description,
       done: task.done
     });
+    // a toast/message will be shown that the task was successfully created
     this.presentToast();
   }
 
